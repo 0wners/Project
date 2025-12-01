@@ -5,12 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Happy Birthday — Your Special Day, Our Special Memories</title>
 <body>
-    <div class="velas">
-        <div class="fuego"></div>
-        <div class="fuego"></div>
-        <div class="fuego"></div>
-        <div class="fuego"></div>
-        <div class="fuego"></div>
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
@@ -135,6 +129,67 @@
     }
 
     .cake-wrap.visible {opacity:1; transform:scale(1);}
+/* ============================================== Candle
+*/
+
+.velas {
+  background: #ffffff;
+  border-radius: 10px;
+  position: absolute;
+  top: 228px;
+  left: 50%;
+  margin-left: -2.4px;
+  margin-top: -8.33333333px;
+  width: 5px;
+  height: 35px;
+  transform: translateY(-300px);
+  backface-visibility: hidden;
+  animation: in 500ms 6s ease-out forwards;
+}
+.velas:after,
+.velas:before {
+  background: rgba(255, 0, 0, 0.4);
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2.22222222px;
+}
+.velas:after {
+  top: 25%;
+  left: 0;
+}
+.velas:before {
+  top: 45%;
+  left: 0;
+}
+
+/* ============================================== Fire
+*/
+
+.fuego {
+  border-radius: 100%;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  margin-left: -2.6px;
+  width: 6.66666667px;
+  height: 18px;
+}
+.fuego:nth-child(1) {
+  animation: fuego 2s 6.5s infinite;
+}
+.fuego:nth-child(2) {
+  animation: fuego 1.5s 6.5s infinite;
+}
+.fuego:nth-child(3) {
+  animation: fuego 1s 6.5s infinite;
+}
+.fuego:nth-child(4) {
+  animation: fuego 0.5s 6.5s infinite;
+}
+.fuego:nth-child(5) {
+  animation: fuego 0.2s 6.5s infinite;
+}
 
 
     /* Glass shatter overlay */
@@ -154,7 +209,7 @@
     /* Transition wrapper to page2 */
     .to-page2{
       opacity:0; transform: translateY(-20px);
-      transition:opacity 600ms ease, transform 800ms ease;
+      transition:opacity 700ms ease, transform 800ms ease;
     }
     .to-page2.show{opacity:1; transform: translateY(0);}
 
@@ -217,10 +272,19 @@
       display:flex;
       align-items:center;
       justify-content:center;
+      /* TINGGI WADAH DITENTUKAN DI SINI */
+      height: 400px; /* Nilai default di template: 400px */
     }
-    .slides{display:flex;gap:16px;transition:transform 420ms cubic-bezier(.2,.8,.2,1);}
+    .slides{display:flex;gap:16px;transition:transform 420ms cubic-bezier(.2,.8,.2,1); width: 100%; height: 100%;}
     .slide{min-width:320px;max-width:720px;border-radius:10px;background:#fff;padding:10px;box-shadow:0 8px 18px rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center}
-    .slide img,.slide iframe, .slide video{width:100%;height:auto;border-radius:8px}
+    
+    /* SOLUSI UKURAN: object-fit: cover */
+    .slide img,.slide iframe, .slide video{
+        width:100%;
+        height:100%; /* Dibuat 100% agar memenuhi wadah .slide */
+        object-fit:cover; /* Memastikan gambar/video mengisi wadah tanpa menyisakan ruang kosong */
+        border-radius:8px
+    }
 
     .gallery .controls{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
     .dots{display:flex;gap:6px;align-items:center}
@@ -502,32 +566,29 @@
         </p>
       </section>
 
-      <!-- Gallery Carousel -->
-      <section class="gallery" aria-label="Gallery">
+    <section class="gallery" aria-label="Gallery">
         <div class="viewport" id="galleryViewport" tabindex="0" aria-roledescription="carousel">
-          <div class="slides" id="slides">
-            <!-- ==============
-                 ADD YOUR IMAGES/VIDEOS HERE
-                 Each item can be:
-                   <img src="DRIVE_LINK_OR_DIRECT_LINK" alt="...">
-                 or
-                   <iframe src="DRIVE_PREVIEW_LINK" ... ></iframe>
-                   OR <video src="..." controls></video>
 
-                 See comments in JS for accepted Drive formats and examples.
-                 ============== -->
-            <!-- Example slide placeholders: you can replace / add more -->
+          <div class="slides" id="slides">
             <div class="slide">
-              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=60&auto=format&fit=crop" alt="Memory 1">
+              <img src="https://cdn.discordapp.com/attachments/1444920981733773343/1444921047219437600/foto0.jpg?ex=692e7716&is=692d2596&hm=2f44f6618851b618b0ab82f2dbb9c0ef0cfd494a0975f6c6ba3f55f300a553f1&?w=1200&q=60&auto=format&fit=crop" alt="Foto Pertama">
             </div>
+
             <div class="slide">
-              <img src="https://images.unsplash.com/photo-1504196830024-0935f1d4a7a9?w=1200&q=60&auto=format&fit=crop" alt="Memory 2">
+              <video src="https://cdn.discordapp.com/attachments/1444920981733773343/1444943465115812021/my_story_.mp4?ex=692e8bf7&is=692d3a77&hm=f3ce7c80c7033884cad84f3f219e35d03bf4d831fdabd2e96afcd0b48b309d07&" controls playsinline></video>
             </div>
-            <div class="slide">
-              <!-- Example of a video element (if you host direct mp4 or webm) -->
-              <!-- <video src="https://example.com/sample.mp4" controls playsinline></video> -->
-              <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=60&auto=format&fit=crop" alt="Memory 3">
-            </div>
+
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1444920981733773343/1444927316529647758/foto11.jpg.webp?ex=692e7ced&is=692d2b6d&hm=80d79468f453ae5a4d29e0fec2be8754f6a83d79c5de7ef0099ce38a735d625d&?w=1200&q=60&auto=format&fit=crop" alt="Foto 3"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1444920981733773343/1444927315523014696/foto15.jpg.webp?ex=692e7ced&is=692d2b6d&hm=1f48e395dca061feea894da1af03f0123a8c3fa4f395248e7de65c90bf1235f2&crop" alt="Foto 4"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1444920981733773343/1444927315825131682/foto14.jpg?ex=692e7ced&is=692d2b6d&hm=578d40fed579d75c08b2fe62960caea96bc705ed6d3061685af107a340db28e9&?w=1200&q=60&auto=format&fit=crop" alt="Foto 5"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1444920981733773343/1444927317754511420/foto10.jpg?ex=692e7cee&is=692d2b6e&hm=6669a3771738a7637e9df2860812ca93c10bcdab751bbb44e681f35dbc0c057a&?w=1200&q=60&auto=format&fit=crop" alt="Foto 6"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1444920981733773343/1444927316169068727/foto13.jpg.webp?ex=692e7ced&is=692d2b6d&hm=4658ba61ed7d0691c98e407aee701cc347f73872eac371a5bd9f54810014f016&?w=1200&q=60&auto=format&fit=crop" alt="Foto 7"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1444920981733773343/1444927317297074186/foto8.jpg.webp?ex=692e7ced&is=692d2b6d&hm=24e906d3745531a173e191efa2067b985a849c45132e94bb79ec2abf8c1fdec1&?w=1200&q=60&auto=format&fit=crop" alt="Foto 8"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1444920981733773343/1444927318282735616/foto29.jpg?ex=692e7cee&is=692d2b6e&hm=7047ae0a713d892d8a820d86cefda24291ea3dfdec000010a8a3046bfa120af3&?w=1200&q=60&auto=format&fit=crop" alt="Foto 9"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1444920981733773343/1444927316898873467/foto21.jpg?ex=692e7ced&is=692d2b6d&hm=0e5517b572eb603ff2849002119b0052865da3fdf745b89288ad802f97364952&?w=1200&q=60&auto=format&fit=crop" alt="Foto 10"></div>
+            <div class="slide"><img src="https://cdn.discordapp.com/attachments/1444920981733773343/1444927318870196344/foto20.jpg?ex=692e7cee&is=692d2b6e&hm=734e356ff49213ff319aa7ac864ff53cf69076f7b25f964d1f5defb0a8f6e9d8&?w=1200&q=60&auto=format&fit=crop" alt="Foto 11"></div>
+            
+
           </div>
         </div>
 
@@ -606,7 +667,7 @@
     const HBD_TEXT = "Happy Birthday"; // handwritten text to show letter-by-letter
     const TOTAL_BALLOONS = HBD_TEXT.length;
     const OPENING_DURATION = 6000; // approx total opening (ms) - overall orchestrated via sequence not purely this
-    const WA_NUMBER = "WA_NUMBER"; // <<-- REPLACE with your number later (e.g. 6281234567890)
+    const WA_NUMBER = "+6283829341295"; // <<-- REPLACE with your number later (e.g. 6281234567890)
     const MAX_PARTICLES = 36;
 
     // DOM refs
